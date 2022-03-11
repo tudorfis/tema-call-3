@@ -1,0 +1,84 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login screen</title>
+  </head>
+  <body>
+    <div class="login">
+      <h2 style="background-color: pink">Login</h2>
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" />
+      </div>
+
+      <div>
+        <button id="submitBtn" disabled="true">Submit</button>
+      </div>
+    </div>
+
+    <style>
+      label {
+        background-color: blue;
+        color: white;
+        display: block;
+        padding: 5px;
+      }
+
+      .form-group {
+        border: 2px solid black;
+        padding: 5px;
+        margin: 5px;
+      }
+    </style>
+
+    <script>
+        /**
+            Client: Fa-mi te rog butonul de login sa nu fie valabil atunci cand a pus cineva parola mai mica de 6 caractere.
+
+            Tech:
+            - modificam inputul de password
+            - numaram numarul de caracter din input
+            - comparam cu numarul minim (var )
+            - cream o conditie un if/else
+            - daca e mai mare sa fie enabled, altfel disabled
+            - cand se apasa o tasta pe password, executam codul
+
+            1) Modificam inputul de password
+        */
+
+        const passwordElement = document.querySelector('#password')
+        const submitButton = document.querySelector('#submitBtn')
+                
+        passwordElement.addEventListener( 'input', function(){
+            const MIN_NUM_OF_PASSWORD_CHARACTERS = 6
+
+            let passwordValue = passwordElement.value
+
+            const isCorrectPassword = passwordValue.length >= MIN_NUM_OF_PASSWORD_CHARACTERS
+
+            if ( isCorrectPassword ) {
+                submitButton.removeAttribute('disabled')
+                console.log( 'facem enabled la butonul de submit' )
+            } else {
+                submitButton.setAttribute( 'disabled', 'true' )
+                console.log( 'facem disabled la butonul de submit' )
+            }
+        })
+
+        submitButton.addEventListener( 'click', function(){
+            alert('a dat submit omu')
+        })
+
+        
+
+    </script>
+  </body>
+</html>
